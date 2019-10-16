@@ -24,6 +24,16 @@ namespace OOPSimple
             p.Name = "Liu";
             p.Gender = "Male";
             System.Console.WriteLine("{0} is {1}", p.GetName(), p.GetGender());
+
+            p.Name = "Zhang";
+            p.Gender = "Female";
+
+            System.Console.WriteLine("{0} is {1}", p.GetName(), p.GetGender());
+            /*
+            * p is 'Liu' or 'Zhang'?
+            * p is 'Male' or 'Female'?
+            * Can we print 'Liu' by p again? 
+            */
         }
     }
 }
