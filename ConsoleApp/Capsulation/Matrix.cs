@@ -66,14 +66,41 @@ namespace Capsulation
 
         public Matrix Add(double x)
         {
+            Matrix m = new Matrix(this.RowCount, this.ColCount);
+
             for(int i = 0; i < this.RowCount; i++)
             {
                 for(int j = 0; j < this.ColCount; j++)
                 {
-                    this.SetValue(i,j, this[i,j] + x);
+                    m[i, j] = this[i, j] + x;
                 }
             }
-            return this;
+            return m;
+        }
+
+        public static Matrix operator+(Matrix thisOne, Matrix other)
+        {
+            return thisOne.Add(other);
+        }
+
+        public static Matrix operator+(Matrix thisOne, double x)
+        {
+            return thisOne.Add(x);
+        }
+
+        public static Matrix operator*(Matrix thisOne, Matrix other)
+        {
+            return thisOne.Multiply(other);
+        }
+
+        public static Matrix operator*(Matrix thisOne, double x)
+        {
+            return thisOne.Multiply(x);
+        }
+
+        public static Matrix operator~(Matrix thisOne)
+        {
+            return thisOne.Transpose();
         }
 
         public int RowCount{
@@ -196,6 +223,10 @@ namespace Capsulation
             System.Console.WriteLine("{0}", x);
             System.Console.WriteLine("{0}", m.Transpose());
             System.Console.WriteLine("{0}", m.Multiply(x));
+            System.Console.WriteLine("{0}", m + m);
+            System.Console.WriteLine("{0}", m + 3.5);
+            System.Console.WriteLine("{0}", m * x);
+            System.Console.WriteLine("{0}", ~m);
         }
     }
 }
