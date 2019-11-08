@@ -22,22 +22,52 @@ namespace Capsulation
             this.RowCount = rowCount;
             this.ColCount = colCount;
 
-            _matrix = new List<List<double>>();
+            _matrix = new double[this.RowCount, this.ColCount];
 
             for(int i = 0; i < this.RowCount; i++)
             {
-                List<double> row = new List<double>();
                 for(int j = 0; j < this.ColCount; j++)
                 {
-                    row.Add(initValue);
+                    _matrix[i,j] = initValue;
                 }
-                _matrix.Add(row);
             }
         }
 
         public Matrix(int rowCount, int colCount)
             : this(rowCount, colCount, 0)
         {
+        }
+
+        public Matrix(Matrix other)
+        {
+            this.RowCount = other.RowCount;
+            this.ColCount = other.ColCount;
+
+            _matrix = new double[this.RowCount, this.ColCount];
+
+            for(int i = 0; i < this.RowCount; i++)
+            {
+                for(int j = 0; j < this.ColCount; j++)
+                {
+                    _matrix[i,j] = other[i,j];
+                }
+            }
+        }
+
+        public Matrix(double[,] values)
+        {
+            this.RowCount = values.GetLength(0);
+            this.ColCount = values.GetLength(1);
+
+            _matrix = new double[this.RowCount, this.ColCount];
+
+            for(int i = 0; i < this.RowCount; i++)
+            {
+                for(int j = 0; j < this.ColCount; j++)
+                {
+                    _matrix[i,j] = values[i,j];
+                }
+            }
         }
 
         public static Matrix GetOneMatrix(int size)
@@ -113,16 +143,16 @@ namespace Capsulation
             private set;
         }
 
-        private List<List<double>> _matrix;
+        private double[,] _matrix;
 
         public double GetValue(int i, int j)
         {
-            return _matrix[i][j];
+            return _matrix[i,j];
         }
 
         public void SetValue(int i, int j, double v)
         {
-            _matrix[i][j] = v;
+            _matrix[i,j] = v;
         }
 
         public double this[int i, int j]
@@ -210,23 +240,30 @@ namespace Capsulation
     {
         public static void Test()
         {
-            Matrix m = new Matrix(2, 3, 1);
-            m[0, 0] = 1; m[0, 1] = 2; m[0, 2] = 3;
-            m[1, 0] = 4; m[1, 1] = 5; m[1, 2] = 6;
-
-            Matrix x = new Matrix(3, 2, 1);
-            x[0, 0] = 1; x[0, 1] = 4;
-            x[1, 0] = 2; x[1, 1] = 5;
-            x[2, 0] = 3; x[2, 1] = 6;
+            Matrix m = new Matrix(new double[,]{
+                {1,2,3},
+                {4,5,6}
+            });
+            Matrix x = new Matrix(new double[,]{
+               {1,4},
+               {2,5},
+               {3,6} 
+            });
 
             System.Console.WriteLine("{0}", m);
             System.Console.WriteLine("{0}", x);
-            System.Console.WriteLine("{0}", m.Transpose());
-            System.Console.WriteLine("{0}", m.Multiply(x));
             System.Console.WriteLine("{0}", m + m);
+            System.Console.WriteLine("{0}", m.Add(m));
             System.Console.WriteLine("{0}", m + 3.5);
+            System.Console.WriteLine("{0}", m.Add(3.5));
+            System.Console.WriteLine("{0}", m.Multiply(x));
             System.Console.WriteLine("{0}", m * x);
+            System.Console.WriteLine("{0}", m * 3.5);
+            System.Console.WriteLine("{0}", m.Multiply(3.5));
+            System.Console.WriteLine("{0}", m.Transpose());
             System.Console.WriteLine("{0}", ~m);
+            System.Console.WriteLine("{0}", Matrix.GetOneMatrix(3));
+            System.Console.WriteLine("{0}", Matrix.GetZeroMatrix(3));
         }
     }
 }
