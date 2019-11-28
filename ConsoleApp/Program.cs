@@ -6,7 +6,7 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            Capsulation.MatrixTest.Test();
+            Inheritance.PersonTest.Test();
         }
     }
 }
