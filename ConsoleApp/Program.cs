@@ -6,7 +6,7 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            Inheritance.PersonTest.Test();
+            ConsoleApp.Association.OrderTest.Test();
         }
     }
 }
