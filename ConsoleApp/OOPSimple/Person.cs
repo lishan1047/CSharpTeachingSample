@@ -1,41 +1,31 @@
 using System;
-
 namespace OOPSimple
 {
     public class Person
     {
-        public string Name;
-        public string Gender;
-        public string GetName(){
-            return this.Name;
+        private string _name;
+        public string Name
+        {
+            set
+            {
+                _name = value;
+            }
+            get
+            {
+                return _name;
+            }
         }
-        public string GetGender(){
-            return this.Gender;
-        }
-    }
-
-    /// <summary>
-    /// This sample shows the basic OOP.
-    /// </summary>
-    public class PersonTest
-    {
-        public static void Test(){
-            Person p = new Person();
-            p.Name = "Liu";
-            p.Gender = "Male";
-            System.Console.WriteLine("{0} is {1}", 
-                p.GetName(), p.GetGender());
-
-            p.Name = "Zhang";
-            p.Gender = "Female";
-
-            System.Console.WriteLine("{0} is {1}", 
-                p.GetName(), p.GetGender());
-            /*
-            * p is 'Liu' or 'Zhang'?
-            * p is 'Male' or 'Female'?
-            * Can we print 'Liu' by p again? 
-            */
+        private int _age;
+        public int Age
+        {
+            set
+            {
+                _age = value;
+            }
+            get
+            {
+                return _age;
+            }
         }
     }
 }
