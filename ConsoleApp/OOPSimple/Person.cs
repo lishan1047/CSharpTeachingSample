@@ -6,25 +6,13 @@ namespace OOPSimple
         private string _name;
         public string Name
         {
-            set
+            set 
             {
                 _name = value;
             }
             get
             {
                 return _name;
-            }
-        }
-        private int _age;
-        public int Age
-        {
-            set
-            {
-                _age = value;
-            }
-            get
-            {
-                return _age;
             }
         }
     }
